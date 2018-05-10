@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Bonus Collector Settings</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="/assets/css/font-awesome.css">
+</head>
+<body>
+
+<nav class="navbar sticky-top navbar-toggleable-md navbar-inverse bg-primary">
+    <div class="container">
+        <a class="navbar-brand" href="#">Bonus Collector</a>
+    </div>
+</nav>
+<div class="container mt-3">
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#pages" role="tab">Pages</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#settings" role="tab">Settings</a>
+        </li>
+    </ul>
+    <div class="tab-content mt-3">
+        <div class="tab-pane active" id="pages" role="tabpanel">
+            <!-- Button trigger add script modal -->
+            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addPage">
+                <i class="fa fa-plus"></i> Add Page
+            </button>
+
+            <table class="table table-hover mt-3" id="pagesTable">
+                <thead>
+                <tr>
+                    <th>Facebook Page Url</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody class="pages"></tbody>
+            </table>
+
+        </div>
+        <div class="tab-pane" id="settings" role="tabpanel">
+            <div class="settings"></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/template" id="lodash__pages" nonce>
+    <% if(pages.length > 0) { %>
+        <% pages.forEach(function(page, i) { %>
+        <tr>
+            <td><%- page.page_url %></td>
+            <td class="text-right">
+                <div class="btn-group btn-group-sm" data-toggle="buttons">
+                    <label class="btn btn-outline-success<%- page.active == 'true' ? ' active' : '' %>" style="margin:0">
+                        <input type="radio" name="pages[<%- i %>][active]" value="true" data-page-active="<%- i %>" autocomplete="off"> ON
+                    </label>
+                    <label class="btn btn-outline-danger<%- page.active == 'false' ? ' active' : '' %>" style="margin:0">
+                        <input type="radio" name="pages[<%- i %>][active]" value="false" data-page-active="<%- i %>" autocomplete="off"> OFF
+                    </label>
+                </div>
+                <button type="button" class="btn btn-outline-primary btn-sm" data-page-edit="<%- i %>" data-toggle="modal" data-target="#editPage_<%- i %>"><i class="fa fa-edit"></i></button>
+                <button type="button" class="btn btn-outline-danger btn-sm" data-page-drop="<%- i %>"><i class="fa fa-remove"></i></button>
+                <div class="modal fade text-left" id="editPage_<%- i %>" tabindex="-1" role="dialog" aria-labelledby="editPageLabel_<%- i %>" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <form data-edit-page="<%- i %>">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editPageLabel_<%- i %>">Edit Page</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="addPageUrl">Page URL</label>
+                                        <input type="text" name="page" class="form-control" value="<%- page.page_url %>" id="editPageUrl_<%- i %>">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <% }); %>
+    <% } %>
+</script>
+
+<script type="text/template" id="lodash__settings">
+    <% if(settings.length > 0) { %>
+        <% settings.forEach(function(option, i) { %>
+            <div class="form-group row">
+                <label class="col-sm-9 col-form-label">
+                    <%- option.title %>
+                    <% if(typeof option.description != 'undefined') { %>
+                        <small class="text-muted"><%- option.description %></small>
+                    <% } %>
+                </label>
+
+                <div class="col-sm-3 text-right">
+                <% if(option.type == 'switch') { %>
+                    <div class="btn-group btn-group-sm" data-toggle="buttons">
+                        <label class="btn btn-outline-success m-0<%- window.settings.get(option.name) == '1' ? ' active' : '' %>">
+                            <input type="radio" name="<%- option.name %>" value="1" autocomplete="off" data-option-save="<%- option.name %>"> ON
+                        </label>
+                        <label class="btn btn-outline-danger m-0<%- window.settings.get(option.name) == '0' ? ' active' : '' %>">
+                            <input type="radio" name="<%- option.name %>" value="0" autocomplete="off" data-option-save="<%- option.name %>"> OFF
+                        </label>
+                    </div>
+                <% } else if(option.type == 'radio') { %>
+                    <div class="btn-group btn-group-sm" data-toggle="buttons">
+                    <% for(i = 0; i < option.options.length; i++){ %>
+                        <label class="btn btn-outline-primary m-0<%- window.settings.get(option.name) == option.options[i].value ? ' active' : '' %>">
+                            <input type="radio" name="<%- option.name %>"  value="<%- option.options[i].value %>" autocomplete="off" data-option-save="<%- option.name %>"> <%- option.options[i].name %>
+                        </label>
+                    <% } %>
+                    </div>
+                <% } else if(option.type == 'input') { %>
+                    <input type="text" class="form-control w-25 float-right" name="<%- option.name %>" value="<%- window.settings.get(option.name) %>" placeholder="<%- option.title %>" data-option-save="<%- option.name %>">
+                <% } %>
+                </div>
+            </div>
+        <% }); %>
+    <% } %>
+</script>
+
+
+<!-- Modal -->
+<div class="modal fade" id="addPage" tabindex="-1" role="dialog" aria-labelledby="addPageLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form data-add-page>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addPageLabel">Add page</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="addPageUrl">Page URL</label>
+                        <input type="text" name="page" class="form-control" id="addPageUrl">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="/assets/js/lib/jquery.js"></script>
+<script src="/assets/js/lib/lodash.js"></script>
+<script src="/assets/js/lib/tether.js"></script>
+<script src="/assets/js/lib/bootstrap.js"></script>
+
+<script src="/assets/js/helpers/settings.js"></script>
+<script src="/assets/js/helpers/pages.js"></script>
+<script src="/assets/js/options.js"></script>
+</body>
+</html>
