@@ -1,0 +1,36 @@
++function (module) {
+	module.ModifierFunctions = {
+		// TopLevel apps.facebook.com //
+		"*://apps.facebook.com/*": "if ($('#pagelet_bluebar').length > 0) {$('#pagelet_bluebar').css({display:restore ? 'initial' : 'none'})} if ($('#rightCol').length > 0) {$('#rightCol').css({display:restore ? 'initial' : 'none'})}	if ($('#pagelet_dock').length > 0) {$('#pagelet_dock').css({display:restore ? 'initial' : 'none'})}",
+
+		///// Playtika Games //////
+		// BingoBlitz //
+		"*://gnocchi-www.buffalo-ggn.net/bingo2-v2-bingoblitz/*": "if ($('#footer').length > 0) {$('#footer').css({display:restore ? 'initial' : 'none'})}",
+		// Caesars //
+		"*://cc-fb-php-ca1.playtika.com/playtika/caesars_haxe/*": "if ($('#header_fb').length > 0) {$('#header_fb').css({display:restore ? 'initial' : 'none'})}",
+		// HouseOfFun //
+		"*://fb-lb.houseoffuns.com/facebook/*": "if ($('.pluginLike').length > 0) {$('.pluginLike').css({display:restore ? 'initial' : 'none'})} if ($('#footer').length > 0) {$('#footer').css({display:restore ? 'initial' : 'none'})} if ($('.pluginLikebox').length > 0) {$('.pluginLikebox').css({display:restore ? 'initial' : 'none'})}",
+		// Slotomania //
+		"*://sm-php-ca1.playtika.com/playtika/vs_fb_en/*": "if ($('#header').length > 0) {$('#header').css({display:restore ? 'initial' : 'none'})} if ($('#footer').length > 0) {$('#footer').css({display:restore ? 'initial' : 'none'})}",
+		// VegasWords //
+		"*://vegas-ca1-php.playtika.com/playtika/vds_fb_en/*": "if ($('.top_panel_bg').length > 0) {$('.top_panel_bg').css({display:restore ? 'initial' : 'none'})} if ($('.bottom_panel_con').length > 0) {$('.bottom_panel_con').css({display:restore ? 'initial' : 'none'})}",
+		// WSOP //
+		"*://facebook-proxy-prod.wsop.playtika.com/*": "if ($('.headContainer').length > 0 && $('#mainFooter').length > 0) {if ($('.headContainer').length > 0) {$('.headContainer').css({display:restore ? 'initial' : 'none'})} if ($('#mainFooter').length > 0) {$('#mainFooter').css({display:restore ? 'initial' : 'none'})}} else {setTimeout(function () {window.$modifier.Modify(restore)}, 2000)}",
+
+
+		///// Zynga Games /////
+		// HitItRich //
+		"*://web.hititrich.zynga.com/*": "if ($('header').length > 0) {$('header').css({display:restore ? 'initial' : 'none'})} if ($('footer').length > 0) {$('footer').css({display:restore ? 'initial' : 'none'})}",
+		// SpinItRich //
+		"*://sir.socialslots.zynga.com/*": "if ($('footer').length > 0) {if ($('footer').length > 0) {$('footer').css({display:restore ? 'initial' : 'none'})}} else {setTimeout(function () {window.$modifier.Modify(restore)}, 2000)}",
+		// WillyWonkaSlots //
+		"*://zdnwonka0-a.akamaihd.net/*": "if ($('#header').length > 0) {$('#header').css({display:restore ? 'initial' : 'none'})} if ($('#footer').length > 0) {$('#footer').css({display:restore ? 'initial' : 'none'})}",
+		// WizardOfOzSlots //
+		"*://zdnwoz0-a.akamaihd.net/*": "if ($('#header').length > 0) {$('#header').css({display:restore ? 'initial' : 'none'})} if ($('#footer').length > 0) {$('#footer').css({display:restore ? 'initial' : 'none'})}",
+
+		///// Misc Games /////
+		// DoubleUCasino //
+		"*://doubleucasino.com/*": "$('.bottombanner_vip').attrchange(function (attrName) {$('.bottombanner_vip').css({display:restore ? 'initial' : 'none'})}); if ($('#top_part1').length > 0 && $('.bottombanner_vip').length > 0 && $('#web_mainlike').length > 0 && $('.fnb_wrap').length > 0 && $('.qrcode_wrap').length > 0 && $('.youtube_wrap').length > 0 && $('.instagram_wrap').length > 0) {if ($('#top_part1').length > 0) {$('#top_part1').css({display:restore ? 'initial' : 'none'})} if ($('.bottombanner_vip').length > 0) {$('.bottombanner_vip').css({display:restore ? 'initial' : 'none'})} if ($('#web_mainlike').length > 0) {$('#web_mainlike').css({display:restore ? 'initial' : 'none'})} if ($('.fnb_wrap').length > 0) {$('.fnb_wrap').css({display:restore ? 'initial' : 'none'})} if ($('.qrcode_wrap').length > 0) {$('.qrcode_wrap').css({display:restore ? 'initial' : 'none'})} if ($('.youtube_wrap').length > 0) {$('.youtube_wrap').css({display:restore ? 'initial' : 'none'})} if ($('.instagram_wrap').length > 0) {$('.instagram_wrap').css({display:restore ? 'initial' : 'none'})}} else {setTimeout(function () {window.$modifier.Modify(restore)}, 3000)}"
+
+	}
+}(window);

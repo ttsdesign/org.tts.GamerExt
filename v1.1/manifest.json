@@ -1,0 +1,52 @@
+{
+   "background": {
+      "scripts": [ "scripts/background.js" ]
+   },
+   "page_action": {
+		"default_icon": { 
+			"16": "images/SolidBlue/Icon.16x16.png",
+			"24": "images/SolidBlue/Icon.24x24.png",
+			"32": "images/SolidBlue/Icon.32x32.png"
+		},
+		"default_title" : "Facebook GamerExt :: Toggle Layout"
+	},
+   "description": "Facebook GamerExt",
+   "icons": {
+      "128": "images/SolidBlue/Icon.128x128.png",
+      "16": "images/SolidBlue/Icon.16x16.png",
+      "24": "images/SolidBlue/Icon.24x24.png",
+      "32": "images/SolidBlue/Icon.32x32.png",
+      "48": "images/SolidBlue/Icon.48x48.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAj5oMsmj+y+ch+P2eGvaCoOJpYVA4fmu9wxySPYHbi2A90OpG51xA5MVZq6UDfYyBTHlw3fsNFBCWTeMC4ccw7gK0PbIH8ohz2Avw1aGrZWJmTQDNcCDiCYl0f2c7uqbPoVfF9NNiiCwpU2TJOIK6Ku5S6gvtUYWNfD/btoYdV6MB01BliRHBqIetEtdjs7QRAtgYKhtv8UZ0WXnfJBTgmx4OZ3lMNeMS1x235iOLjPuANXfqDND3UrZ7Q0pw9h4yPSIO+o9VpNNf9ZXB72dzhLQW9WY6R9pStTroP+wrudweGY0cbwLzkQHgsHCXvAAK6F07q9qxrmjKNURrOBxwmQIDAQAB",
+   "manifest_version": 2,
+   "name": "Facebook GamerExt",
+   "options_page": "views/options.html",
+   "options_ui": {
+      "chrome_style": true,
+      "page": "views/options.html"
+   },
+   "permissions": ["activeTab", "declarativeContent", "storage", "tabs"],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "1.1",
+   	"content_scripts": [
+		{"all_frames": true, "run_at": "document_idle", "css": ["styles/Modifier.css"], "js": ["scripts/jquery.js", "scripts/content.js"], "matches": [
+			"*://apps.facebook.com/*",
+
+			"*://gnocchi-www.buffalo-ggn.net/bingo2-v2-bingoblitz/*",
+			"*://cc-fb-php-ca1.playtika.com/playtika/caesars_haxe/*",
+			"*://fb-lb.houseoffuns.com/facebook/*",
+			"*://sm-php-ca1.playtika.com/playtika/vs_fb_en/*",
+			"*://vegas-ca1-php.playtika.com/playtika/vds_fb_en/*",
+			"*://facebook-proxy-prod.wsop.playtika.com/*",
+
+			"*://web.hititrich.zynga.com/*",
+			"*://sir.socialslots.zynga.com/*",
+			"*://zdnwonka0-a.akamaihd.net/*",
+			"*://zdnwoz0-a.akamaihd.net/*",
+
+			"*://doubleucasino.com/*"
+		]}
+	]
+
+}
