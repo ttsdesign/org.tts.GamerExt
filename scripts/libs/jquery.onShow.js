@@ -1,1 +1,0 @@
-!function(i){i.fn.extend({onShow:function(n,e){return this.each(function(){var c=this,o=void 0==e||e;if(i.isFunction(n))if(i(c).is(":hidden")){var d=function(){i(c).is(":visible")&&(n.call(c),o&&i("body").unbind("click keyup keydown",d))};i("body").bind("click keyup keydown",d)}else n.call(c)})}})}(jQuery);
